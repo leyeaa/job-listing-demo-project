@@ -48,6 +48,8 @@ const LoginPage = () => {
           toast.success(
             "Account created. Check your email to confirm your account before signing in.",
           );
+          setEmail("");
+          setPassword("");
           setIsCreatingAccount(false);
           return;
         }
@@ -73,7 +75,7 @@ const LoginPage = () => {
       <div className="container m-auto max-w-md py-20 px-6">
         <div className="bg-white px-6 py-8 shadow-md rounded-md border">
           <h1 className="text-3xl text-center font-semibold mb-6">
-            {isCreatingAccount ? "Create Account" : "Sign In"}
+            {isCreatingAccount ? "Sign Up" : "Sign In"}
           </h1>
 
           {!isSupabaseConfigured && (
@@ -127,7 +129,7 @@ const LoginPage = () => {
               {isSubmitting
                 ? "Please wait..."
                 : isCreatingAccount
-                  ? "Create account"
+                  ? "Sign Up"
                   : "Sign in"}
             </button>
           </form>
@@ -139,7 +141,7 @@ const LoginPage = () => {
           >
             {isCreatingAccount
               ? "Already have an account? Sign in"
-              : "Need an account? Create one"}
+              : "Need an account? Sign up"}
           </button>
         </div>
       </div>

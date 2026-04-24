@@ -55,17 +55,3 @@ npm run dev
 npm run build
 npm run preview
 ```
-
-## Important Notes
-
-- Runtime data now comes from Supabase, not `src/jobs.json`.
-- `src/jobs.json` is retained as legacy sample content.
-- Write security is enforced by RLS policies in `supabase/schema.sql`.
-
-## Documentation
-
-For complete implementation and interview preparation docs, see:
-
-- `docs/IMPLEMENTATION_GUIDE.md`
-- `docs/INTERVIEW_WALKTHROUGH.md`
-- `docs/CHANGES_SUMMARY.md`
