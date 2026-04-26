@@ -104,6 +104,8 @@ Optional GitHub repository variable:
 
 - `VITE_APP_BASE_PATH` (example: `/jobboard/`)
 
+If `VITE_APP_BASE_PATH` is not set, the deploy workflow will derive a base path from the last directory segment of `FTP_SERVER_DIR` (for example `/public_html/globalfocusict.com/jobboard/` -> `/jobboard/`).
+
 Shared hosting notes:
 
 - `public/.htaccess` is included in build output for SPA fallback on Apache hosts.
