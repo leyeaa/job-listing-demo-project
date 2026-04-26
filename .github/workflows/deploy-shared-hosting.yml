@@ -32,12 +32,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate base path
+        env:
+          VITE_APP_BASE_PATH: ${{ vars.VITE_APP_BASE_PATH }}
+        run: |
+          if [ -z "$VITE_APP_BASE_PATH" ]; then
+            echo "VITE_APP_BASE_PATH repository variable is required for shared hosting deploys."
+            exit 1
+          fi
+          case "$VITE_APP_BASE_PATH" in
+            /*/) ;;
+            *)
+              echo "VITE_APP_BASE_PATH must look like /jobboard/ (leading and trailing slash)."
+              exit 1
+              ;;
+          esac
+
       - name: Lint and build
         run: npm run check
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_APP_BASE_PATH: ${{ vars.VITE_APP_BASE_PATH || '/' }}
+          VITE_APP_BASE_PATH: ${{ vars.VITE_APP_BASE_PATH }}
 
       - name: Deploy dist via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
